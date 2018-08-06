@@ -93,7 +93,7 @@ static const Checkpoints::CCheckpointData data = {
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("00000dab7af8c22329eea37473a21de29a710c6fa6ff96147ce0c43d34808751"));
+    boost::assign::map_list_of(0, uint256("eebb794bb85c4eaecbb0be5d5cd68fb84480feacf8ca10ebe90218b99c16392e"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
     1506861240,
@@ -276,13 +276,13 @@ public:
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1506861240;
-        genesis.nNonce = 372551;
+        genesis.nNonce = 1656106;
 
         hashGenesisBlock = genesis.GetHash();
 
-        MineGenesis(genesis);
+        //MineGenesis(genesis);
 
-        assert(hashGenesisBlock == uint256("00000dab7af8c22329eea37473a21de29a710c6fa6ff96147ce0c43d34808751"));
+        assert(hashGenesisBlock == uint256("000007c0877908a87c8d7bf013d37f48acbc9fe5a7de471650e3dd9a96acfdeb"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -356,7 +356,9 @@ public:
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 22706;
 
-        //assert(hashGenesisBlock == uint256("300552a9db8b2921c3c07e5bbf8694df5099db579742e243daeaf5008b1e74de"));
+        MineGenesis(genesis);
+
+        assert(hashGenesisBlock == uint256("300552a9db8b2921c3c07e5bbf8694df5099db579742e243daeaf5008b1e74de"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
