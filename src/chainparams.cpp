@@ -192,14 +192,14 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1506861240;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 1991619;
+        genesis.nNonce = 3072955;
 
         hashGenesisBlock = genesis.GetHash();
 
         MineGenesis(genesis);
 
-        assert(hashGenesisBlock == uint256("00000daac55f1df19bc509a13476511382d08aaaa80a328a2c1a575ae8eafbc4"));
-        assert(genesis.hashMerkleRoot == uint256("89370975b13f97d8f9cfc373b0e9d5cc0e2e06b8dc283c76824e4df03ca2d60a"));
+        assert(hashGenesisBlock == uint256("00000360f4ecb3cd3966fa9c2d22e0010172f6098e17348797339aa92a7d60f2"));
+        assert(genesis.hashMerkleRoot == uint256("eebb794bb85c4eaecbb0be5d5cd68fb84480feacf8ca10ebe90218b99c16392e"));
 
         //vSeeds.push_back(CDNSSeedData("viridicoin.info", "dnsseed.viridicoin.info"));     // Primary DNS Seeder
 
@@ -280,7 +280,8 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
 
-
+        MineGenesis(genesis);
+        
         assert(hashGenesisBlock == uint256("00000dab7af8c22329eea37473a21de29a710c6fa6ff96147ce0c43d34808751"));
 
         vFixedSeeds.clear();
