@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=VIRIDI
+Comment=VIRIDI P2P Cryptocurrency
+Exec=viridi-qt %u
+Terminal=false
+Type=Application
+Icon=viridi128
+MimeType=x-scheme-handler/viridi;
+Categories=Office;Finance;
+Name[ru]=viridi-qt.desktop.desktop

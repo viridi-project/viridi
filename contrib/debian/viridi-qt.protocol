@@ -1,0 +1,11 @@
+[Protocol]
+exec=viridi-qt '%u'
+protocol=viridi
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

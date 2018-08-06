@@ -1,0 +1,29 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/viridi_bg.qm</file>
+        <file alias="ca">locale/viridi_ca.qm</file>
+        <file alias="cs">locale/viridi_cs.qm</file>
+        <file alias="da">locale/viridi_da.qm</file>
+        <file alias="de">locale/viridi_de.qm</file>
+        <file alias="en">locale/viridi_en.qm</file>
+        <file alias="en_US">locale/viridi_en_US.qm</file>
+        <file alias="es">locale/viridi_es.qm</file>
+        <file alias="fi">locale/viridi_fi.qm</file>
+        <file alias="fr_FR">locale/viridi_fr_FR.qm</file>
+        <file alias="it">locale/viridi_it.qm</file>
+        <file alias="ja">locale/viridi_ja.qm</file>
+        <file alias="ko_KR">locale/viridi_ko_KR.qm</file>
+        <file alias="nl">locale/viridi_nl.qm</file>
+        <file alias="pl">locale/viridi_pl.qm</file>
+        <file alias="pt">locale/viridi_pt.qm</file>
+        <file alias="pt_BR">locale/viridi_pt_BR.qm</file>
+        <file alias="ro_RO">locale/viridi_ro_RO.qm</file>
+        <file alias="ru">locale/viridi_ru.qm</file>
+        <file alias="sk">locale/viridi_sk.qm</file>
+        <file alias="sv">locale/viridi_sv.qm</file>
+        <file alias="tr">locale/viridi_tr.qm</file>
+        <file alias="uk">locale/viridi_uk.qm</file>
+        <file alias="zh_CN">locale/viridi_zh_CN.qm</file>
+        <file alias="zh_TW">locale/viridi_zh_TW.qm</file>
+    </qresource>
+</RCC>

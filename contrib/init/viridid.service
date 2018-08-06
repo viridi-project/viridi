@@ -1,0 +1,26 @@
+[Unit]
+Description=VIRIDI's distributed currency daemon
+After=network.target
+
+[Service]
+User=viridi
+Group=viridi
+
+Type=forking
+PIDFile=/var/lib/viridid/viridid.pid
+
+ExecStart=/usr/bin/viridid -daemon -pid=/var/lib/viridid/viridid.pid \
+          -conf=/etc/viridi/viridi.conf -datadir=/var/lib/viridid
+
+ExecStop=-/usr/bin/viridi-cli -conf=/etc/viridi/viridi.conf \
+         -datadir=/var/lib/viridid stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

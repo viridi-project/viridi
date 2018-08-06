@@ -1,0 +1,26 @@
+# /etc/conf.d/viridid: config file for /etc/init.d/viridid
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/viridi/viridi.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/viridid"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/viridid.pid"
+
+# Where to write viridid data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/viridid"
+
+# User and group to own viridid process
+#BITCOIND_USER="viridi"
+#BITCOIND_GROUP="viridi"
+
+# Path to viridid executable
+#BITCOIND_BIN="/usr/bin/viridid"
+
+# Nice value to run viridid under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""
