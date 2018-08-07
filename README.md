@@ -28,9 +28,8 @@ promising and ambitious future ahead
 <tr><td>Ticker</td><td>VIC</td></tr>
 <tr><td>Consensus algorithm</td><td>POS</td></tr>
 <tr><td>Instamine protection</td><td>First 520 blocks</td></tr>
-<tr><td>Hashing algorithm from start</td><td>Keccak</td></tr>
+<tr><td>Hashing algorithm</td><td>Keccak</td></tr>
 <tr><td>POS starting block</td><td>521</td></tr>
-<tr><td>POS phase duration</td><td>Unlimited</td></tr>
 <tr><td>POS block reward(per year)</td><td>3.000.000 VIC</td></tr>
 <tr><td>POS block reward(per month)</td><td>246.570 VIC</td></tr>
 <tr><td>POS block reward(per day)</td><td>8219 VIC</td></tr>
