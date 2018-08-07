@@ -59,8 +59,13 @@ called Triple Security Node.
 During POS Masternodes will receive the following reward (different for each type) for maintaining
 network stability and performing additional functions:
 
-Light Node 10% from total block reward
-Medium Node 30% from total block reward
-Full Node 60% from total block reward
+### POS Block reward
+
+<table>
+<tr><th>Masternode</th><th>Block reward</th></tr>
+<tr><th>Light Node</th><th>10% from total block reward</th></tr>
+<tr><th>Medium Node</th><th>30% from total block reward</th></tr>
+<tr><th>Full Node</th><th>60% from total block reward</th></tr>
+</table>
 
 Total block reward: 3.000.000 year / 8219 day / 342 hour / 5.7 min + transaction fees
