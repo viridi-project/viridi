@@ -1621,16 +1621,13 @@ double ConvertBitsToDouble(unsigned int nBits)
 CAmount GetBlockValue(int nHeight)
 {
     
-     if (nHeight == 0) {
+    if (nHeight == 0) {
         return 155000000 * COIN;
     } else if (nHeight < Params().ANTI_INSTAMINE_TIME()) {
         return 1 * COIN;
-
-    } else if (nHeight <= 220 && nHeight > Params().LAST_POW_BLOCK()) {
-        return 5.7 * COIN;
-      
+        
       // POS Year 1
-    } else if (nHeight <= 525600 && nHeight >= 221) {
+    } else if (nHeight <= 525600 && nHeight > Params().LAST_POW_BLOCK()) {
         return 5.7 * COIN;
       // POS Year 2
     } else if (nHeight <= 1051200 && nHeight >= 525601) {
