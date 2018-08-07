@@ -1686,13 +1686,13 @@ int64_t GetMasternodePayment(int nHeight, unsigned mnlevel, int64_t blockValue)
     switch(mnlevel)
     {
         case 1:
-            return blockValue / 100 * 3;
+            return blockValue / 100 * 10;
 
         case 2:
-            return blockValue / 100 * 9;
+            return blockValue / 100 * 30;
 
         case 3:
-            return blockValue / 100 * 15;
+            return blockValue / 100 * 60;
     }
 
     return 0;

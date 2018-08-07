@@ -145,7 +145,7 @@ public:
 
         
         subsidySwitchPoints = {
-            {0         ,   4 * COIN},
+            {0         ,   1 * COIN},
         };
         
         assert(subsidySwitchPoints.size());
@@ -255,7 +255,7 @@ public:
         bnStartWork = bnProofOfWorkLimit;
 
         subsidySwitchPoints = {
-            {0         ,   4 * COIN},
+            {0         ,   1 * COIN},
         };
         
         assert(subsidySwitchPoints.size());
@@ -338,7 +338,7 @@ public:
         bnStartWork = ~uint256(0) >> 20;
 
         subsidySwitchPoints = {
-            {0         ,   4 * COIN},
+            {0         ,   1 * COIN},
         };
         
         assert(subsidySwitchPoints.size());
