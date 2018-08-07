@@ -1620,55 +1620,57 @@ double ConvertBitsToDouble(unsigned int nBits)
 
 CAmount GetBlockValue(int nHeight)
 {
-    if (nHeight == 0) {
+    
+     if (nHeight == 0) {
         return 155000000 * COIN;
     } else if (nHeight < Params().ANTI_INSTAMINE_TIME()) {
-        return 5.7 * COIN;
+        return 1 * COIN;
 
-    } else if (nHeight <= Params().ANTI_INSTAMINE_TIME() && nHeight > Params().LAST_POW_BLOCK()) {
+    } else if (nHeight <= 520 && nHeight > Params().LAST_POW_BLOCK()) {
         return 5.7 * COIN;
+      
       // POS Year 1
     } else if (nHeight <= 525600 && nHeight >= 521) {
-        return 53 * COIN;
+        return 5.7 * COIN;
       // POS Year 2
     } else if (nHeight <= 1051200 && nHeight >= 525601) {
-        return 49 * COIN;
+        return 5.7 * COIN;
       // POS Year 3
     } else if (nHeight <= 1576800 && nHeight >= 1051201) {
-        return 45 * COIN;
+        return 5.7 * COIN;
       // POS Year 4
     } else if (nHeight <= 2102400 && nHeight >= 1576801) {
-        return 41 * COIN;
+        return 5.7 * COIN;
       // POS Year 5
     } else if (nHeight <= 2628000 && nHeight >= 2102401) {
-        return 37 * COIN;
+        return 5.7 * COIN;
       // POS Year 6
     } else if (nHeight <= 3153600 && nHeight >= 2628001) {
-        return 33 * COIN;
+        return 5.7 * COIN;
       // POS Year 7
     } else if (nHeight <= 5644800 && nHeight >= 3153601) {
-        return 29 * COIN;
+        return 5.7 * COIN;
       // POS Year 8
     } else if (nHeight <= 6170400 && nHeight >= 5644801) {
-        return 25 * COIN;
+        return 5.7 * COIN;
       // POS Year 9
     } else if (nHeight <= 6696000 && nHeight >= 6170401) {
-        return 21 * COIN;
+        return 5.7 * COIN;
       // POS Year 10
     } else if (nHeight <= 7221600 && nHeight >= 6696001) {
-        return 17 * COIN;
+        return 5.7 * COIN;
       // POS Year 11
     } else if (nHeight <= 7747200 && nHeight >= 7221601) {
-        return 13 * COIN;
+        return 5.7 * COIN;
       // POS Year 12
     } else if (nHeight <= 8272800 && nHeight >= 7747201) {
-        return 9 * COIN;
+        return 5.7 * COIN;
       // POS Year 13
     } else if (nHeight <= 8798400 && nHeight >= 8272801) {
-        return 5 * COIN;
+        return 5.7 * COIN;
       // POS Year 14
     } else if (nHeight >= 8798401) {
-        return 1 * COIN;
+        return 5.7 * COIN;
     }
 
     int64_t netHashRate = chainActive.GetNetworkHashPS(24, nHeight);
