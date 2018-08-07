@@ -68,4 +68,11 @@ network stability and performing additional functions:
 <tr><th>Full Node</th><th>60% from total block reward</th></tr>
 </table>
 
-Total block reward: 3.000.000 year / 8219 day / 342 hour / 5.7 min + transaction fees
+<table>
+<tr><th>Duration</th><th>Block reward</th></tr>
+<tr><th>Year</th><th>3.000.000 VIC + transaction fees</th></tr>
+<tr><th>Month</th><th>30% from total block reward + transaction fees</th></tr>
+<tr><th>Day</th><th>8219 VIC + transaction fees</th></tr>
+<tr><th>Hour</th><th>342 VIC + transaction fees</th></tr>
+<tr><th>Minute</th><th>5.7 VIC + transaction fees </th></tr>
+</table>
