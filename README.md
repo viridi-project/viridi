@@ -70,9 +70,9 @@ network stability and performing additional functions:
 
 <table>
 <tr><th>Duration</th><th>Block reward</th></tr>
-<tr><th>Year</th><th>3.000.000 VIC + transaction fees</th></tr>
-<tr><th>Month</th><th>30% from total block reward + transaction fees</th></tr>
-<tr><th>Day</th><th>8219 VIC + transaction fees</th></tr>
-<tr><th>Hour</th><th>342 VIC + transaction fees</th></tr>
-<tr><th>Minute</th><th>5.7 VIC + transaction fees </th></tr>
+<tr><td>Year</td><td>3.000.000 VIC + transaction fees</td></tr>
+<tr><td>Month</td><td>30% from total block reward + transaction fees</td></tr>
+<tr><td>Day</td><td>8219 VIC + transaction fees</td></tr>
+<tr><td>Hour</td><td>342 VIC + transaction fees</td></tr>
+<tr><td>Minute</td><td>5.7 VIC + transaction fees </td></tr>
 </table>
