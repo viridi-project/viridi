@@ -99,13 +99,14 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     if (Params().MineBlocksOnDemand())
         pblock->nVersion = GetArg("-blockversion", pblock->nVersion);
 
+    pblock->nVersion = 3;
     // Create coinbase tx
     CMutableTransaction txNew;
     txNew.vin.resize(1);
     txNew.vin[0].prevout.SetNull();
     txNew.vout.resize(1);
     txNew.vout[0].SetEmpty();
-//    txNew.vout[0].scriptPubKey = scriptPubKeyIn;
+    txNew.vout[0].scriptPubKey = scriptPubKeyIn;
 
     pblock->vtx.push_back(txNew);
 
