@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017-2018 The XDNA Core developers
+// Copyright (c) 2017-2018 The VIRIDI Core developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,7 +19,7 @@
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, uint32_t nTime)
 {
-    /* current difficulty formula, XDNA - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
+    /* current difficulty formula, VIRIDI - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
     const CBlockIndex* BlockLastSolved = pindexLast;
     const CBlockIndex* BlockReading = pindexLast;
     int64_t nActualTimespan = 0;
@@ -61,8 +61,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, uint32_t nTime)
         return bnNew.GetCompact();
     }
 
-    bool is_hexhash_work = nTime > Params().HEXHashActivationTime();
-
     for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
         if (PastBlocksMax > 0 && i > PastBlocksMax) {
             break;
@@ -70,21 +68,10 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, uint32_t nTime)
         CountBlocks++;
 
         if (CountBlocks <= PastBlocksMin) {
-
-            uint256 block_target;
-            block_target.SetCompact(BlockReading->nBits);
-
-            bool keccak2xhash =  is_hexhash_work
-                              && BlockReading->GetBlockTime() <= Params().HEXHashActivationTime();
-
-            // adjust difficulty of keccak (1350 MHps) blocks for hexhash (13.5 MHps)
-            if(keccak2xhash)
-                block_target *= 100;  // 100 = 1350 MHps / 13.5 MHps
-
             if (CountBlocks == 1) {
-                PastDifficultyAverage = block_target;
+                PastDifficultyAverage.SetCompact(BlockReading->nBits);
             } else {
-                PastDifficultyAverage = ((PastDifficultyAveragePrev * CountBlocks) + (block_target)) / (CountBlocks + 1);
+                PastDifficultyAverage = ((PastDifficultyAveragePrev * CountBlocks) + (uint256().SetCompact(BlockReading->nBits))) / (CountBlocks + 1);
             }
             PastDifficultyAveragePrev = PastDifficultyAverage;
         }
