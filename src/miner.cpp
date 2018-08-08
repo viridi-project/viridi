@@ -247,7 +247,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         std::make_heap(vecPriority.begin(), vecPriority.end(), comparer);
 
         vector<CBigNum> vBlockSerials;
-        vector<CBigNum> vTxSerials;
+        
         while (!vecPriority.empty()) {
             // Take highest priority transaction off the priority queue:
             double dPriority = vecPriority.front().get<0>();
