@@ -53,10 +53,10 @@ public:
     const MessageStartChars& MessageStart() const { return pchMessageStart; }
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
 
-    const std::vector<unsigned char>& xDNADevKey() const { return vVIRIDIDevKey; }
-    const std::vector<unsigned char>& xDNAFundKey() const { return vVIRIDIFundKey; }
-    int GetDevFee() const { return nDevFee; }
-    int GetFundFee() const { return nFundFee; }
+    //const std::vector<unsigned char>& xDNADevKey() const { return vVIRIDIDevKey; }
+    //const std::vector<unsigned char>& xDNAFundKey() const { return vVIRIDIFundKey; }
+    //int GetDevFee() const { return nDevFee; }
+    //int GetFundFee() const { return nFundFee; }
 
     int GetDefaultPort() const { return nDefaultPort; }
     const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
