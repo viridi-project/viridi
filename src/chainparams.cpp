@@ -158,14 +158,14 @@ public:
         nMinerThreads = 0;
         nTargetSpacing = 1 * 60;  // VIRIDI: 1 minute
         nAntiInstamineTime = 20; // 500 blocks with 1 reward for instamine prevention
-        nMaturity = 2;
+        nMaturity = 60;
         nMasternodeCountDrift = 3;
         nMaxMoneyOut = 200000000 * COIN; // Total Coin 200000000
 
-        nStartMasternodePaymentsBlock = 21;
+        nStartMasternodePaymentsBlock = 100;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 100;
+        nLastPOWBlock = 1440000;
         nModifierUpdateBlock = std::numeric_limits<decltype(nModifierUpdateBlock)>::max();
 
         /**
