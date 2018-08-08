@@ -360,10 +360,10 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
             txReward.vout[reward_out_idx].nValue -= mn_reward;
 
-            // VIRIDI fees
+            // viridi fees
             /*
-            CScript scriptDevPubKeyIn  = CScript{} << Params().vVIRIDIDevKey() << OP_CHECKSIG;
-            CScript scriptFundPubKeyIn = CScript{} << Params().vVIRIDIFundKey() << OP_CHECKSIG;
+            CScript scriptDevPubKeyIn  = CScript{} << Params().xDNADevKey() << OP_CHECKSIG;
+            CScript scriptFundPubKeyIn = CScript{} << Params().xDNAFundKey() << OP_CHECKSIG;
 
             auto vDevReward  = block_value * Params().GetDevFee() / 100;
             auto vFundReward = block_value * Params().GetFundFee() / 100;
@@ -397,6 +397,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
     return pblocktemplate.release();
 }
+
 
 void IncrementExtraNonce(CBlock* pblock, CBlockIndex* pindexPrev, unsigned int& nExtraNonce)
 {
