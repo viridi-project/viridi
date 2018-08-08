@@ -165,7 +165,7 @@ public:
         nStartMasternodePaymentsBlock = 21;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 120;
+        nLastPOWBlock = 200;
         nModifierUpdateBlock = std::numeric_limits<decltype(nModifierUpdateBlock)>::max();
 
         /**

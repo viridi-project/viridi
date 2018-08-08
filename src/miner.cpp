@@ -31,7 +31,7 @@ using namespace std;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-// VIRIDIMiner
+// ViridiMiner
 //
 
 //
@@ -118,14 +118,19 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     if (fProofOfStake) {
         boost::this_thread::interruption_point();
         pblock->nTime = GetAdjustedTime();
-        CBlockIndex* pindexPrev = chainActive.Tip();
-        pblock->nBits = GetNextWorkRequired(pindexPrev);
+
+        { LOCK(cs_main);
+
+            CBlockIndex* pindexPrev = chainActive.Tip();
+            pblock->nBits = GetNextWorkRequired(pindexPrev, pblock->nTime);
+        }
+
         CMutableTransaction txCoinStake;
         int64_t nSearchTime = pblock->nTime; // search to current time
         bool fStakeFound = false;
         if (nSearchTime >= nLastCoinStakeSearchTime) {
             unsigned int nTxNewTime = 0;
-            if (pwallet->CreateCoinStake(*pwallet, pblock->nBits, nSearchTime - nLastCoinStakeSearchTime, txCoinStake, nTxNewTime)) {
+            if (pwallet->CreateCoinStake(*pwallet, pblock->nTime, pblock->nBits, nSearchTime - nLastCoinStakeSearchTime, txCoinStake, nTxNewTime)) {
                 pblock->nTime = nTxNewTime;
 //                pblock->vtx[0].vout[0].SetEmpty();
                 pblock->vtx.push_back(CTransaction(txCoinStake));
@@ -327,8 +332,9 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
                 }
             }
         }
-
-        CAmount block_value = GetBlockValue(nHeight - 1);
+        if (!fProofOfStake)
+            UpdateTime(pblock, pindexPrev);
+        CAmount block_value = GetBlockValue(nHeight - 1, pblock->nTime);
 
         txNew.vin[0].scriptSig = CScript() << nHeight << OP_0;
 
@@ -341,7 +347,6 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
         pblock->vtx[0] = txNew;
 
-        
         if(nHeight > 1) { // exclude premine
 
             auto reward_tx_idx = fProofOfStake ? 1 : 0;
@@ -357,8 +362,8 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
             // VIRIDI fees
             /*
-            CScript scriptDevPubKeyIn  = CScript{} << Params().xDNADevKey() << OP_CHECKSIG;
-            CScript scriptFundPubKeyIn = CScript{} << Params().xDNAFundKey() << OP_CHECKSIG;
+            CScript scriptDevPubKeyIn  = CScript{} << Params().vVIRIDIDevKey() << OP_CHECKSIG;
+            CScript scriptFundPubKeyIn = CScript{} << Params().vVIRIDIFundKey() << OP_CHECKSIG;
 
             auto vDevReward  = block_value * Params().GetDevFee() / 100;
             auto vFundReward = block_value * Params().GetFundFee() / 100;
@@ -371,7 +376,6 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
             pblock->vtx[reward_tx_idx] = txReward;
         }
-        
 
         nLastBlockTx = nBlockTx;
         nLastBlockSize = nBlockSize;
@@ -379,9 +383,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
         // Fill in header
         pblock->hashPrevBlock = pindexPrev->GetBlockHash();
-        if (!fProofOfStake)
-            UpdateTime(pblock, pindexPrev);
-        pblock->nBits = GetNextWorkRequired(pindexPrev);
+        pblock->nBits = GetNextWorkRequired(pindexPrev, pblock->nTime);
         pblock->nNonce = 0;
         pblocktemplate->vTxSigOps[0] = GetLegacySigOpCount(pblock->vtx[0]);
 
@@ -441,7 +443,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     {
         LOCK(cs_main);
         if (pblock->hashPrevBlock != chainActive.Tip()->GetBlockHash())
-            return error("VIRIDIMiner : generated block is stale");
+            return error("ViridiMiner : generated block is stale");
     }
 
     // Remove key from key pool
@@ -456,7 +458,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
     // Process this block the same as if we had received it from another node
     CValidationState state;
     if (!ProcessNewBlock(state, NULL, pblock))
-        return error("VIRIDIMiner : ProcessNewBlock, block not accepted");
+        return error("ViridiMiner : ProcessNewBlock, block not accepted");
 
     for (CNode* node : vNodes) {
         node->PushInventory(CInv(MSG_BLOCK, pblock->GetHash()));
@@ -471,7 +473,7 @@ bool fGenerateBitcoins = false;
 
 void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 {
-    LogPrintf("VIRIDIMiner started\n");
+    LogPrintf("ViridiMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
     RenameThread("viridi-miner");
 
@@ -546,7 +548,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             continue;
         }
 
-        LogPrintf("Running VIRIDIMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
+        LogPrintf("Running ViridiMiner with %u transactions in block (%u bytes)\n", pblock->vtx.size(),
             ::GetSerializeSize(*pblock, SER_NETWORK, PROTOCOL_VERSION));
 
         //
