@@ -162,10 +162,10 @@ public:
         nMasternodeCountDrift = 3;
         nMaxMoneyOut = 200000000 * COIN; // Total Coin 200000000
 
-        nStartMasternodePaymentsBlock = 100;
+        nStartMasternodePaymentsBlock = 75;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 1440000;
+        nLastPOWBlock = 100;
         nModifierUpdateBlock = std::numeric_limits<decltype(nModifierUpdateBlock)>::max();
 
         /**
