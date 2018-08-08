@@ -135,10 +135,10 @@ public:
         pchMessageStart[2] = 0xef;
         pchMessageStart[3] = 0x28;
         vAlertPubKey = ParseHex("04A2B684CBABE97BA08A35EA388B06A6B03E13DFBA974466880AF4CAE1C5B606A751BF7C5CBDE5AB90722CF5B1EC1AADA6D24D607870B6D6B5D684082655404C8D");
-        //vVIRIDIDevKey = ParseHex("02dd21120d8e64310edaa1e9bc9a4ce714ddaaa756e6cf91937f78ebd7cdd05902"); // DevPubKey for fees
-        //vVIRIDIFundKey = ParseHex("02dd21120d8e64310edaa1e9bc9a4ce714ddaaa756e6cf91937f78ebd7cdd05902"); // FundPubKey for fees
-        //nDevFee = 1; // DevFee %
-        //nFundFee = 2; //FundFee %
+        vVIRIDIDevKey = ParseHex("02dd21120d8e64310edaa1e9bc9a4ce714ddaaa756e6cf91937f78ebd7cdd05902"); // DevPubKey for fees
+        vVIRIDIFundKey = ParseHex("02dd21120d8e64310edaa1e9bc9a4ce714ddaaa756e6cf91937f78ebd7cdd05902"); // FundPubKey for fees
+        nDevFee = 1; // DevFee %
+        nFundFee = 2; //FundFee %
         nDefaultPort = 2706;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         bnStartWork = ~uint256(0) >> 24;
@@ -156,16 +156,16 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetSpacing = 1 * 30;  // VIRIDI: 1 minute
-        nAntiInstamineTime = 100; // 500 blocks with 1 reward for instamine prevention
-        nMaturity = 6;
+        nTargetSpacing = 1 * 20;  // VIRIDI: 1 minute
+        nAntiInstamineTime = 20; // 500 blocks with 1 reward for instamine prevention
+        nMaturity = 2;
         nMasternodeCountDrift = 3;
         nMaxMoneyOut = 200000000 * COIN; // Total Coin 200000000
 
-        nStartMasternodePaymentsBlock = 100;
+        nStartMasternodePaymentsBlock = 21;
 
         /** Height or Time Based Activations **/
-        nLastPOWBlock = 199;
+        nLastPOWBlock = 100;
         nModifierUpdateBlock = std::numeric_limits<decltype(nModifierUpdateBlock)>::max();
 
         /**

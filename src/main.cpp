@@ -3142,7 +3142,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             
             if(nHeight > 1) { // exclude premine
                 // The first transaction must have Fund and Dev scripts.
-                /*
+                
                 CScript scriptDevPubKeyIn  = CScript() << Params().xDNADevKey() << OP_CHECKSIG;
                 CScript scriptFundPubKeyIn = CScript() << Params().xDNAFundKey() << OP_CHECKSIG;
                 CTxDestination DevAddress;
@@ -3170,16 +3170,16 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 return state.DoS(100, error("CheckBlock() : coinbase do not have the dev or fund reward (vout)."),
                 REJECT_INVALID, "bad-cb-reward-missing");
 
-            */
+            
 
-            //CAmount block_value = GetBlockValue(nHeight - 1);
+            CAmount block_value = GetBlockValue(nHeight - 1);
 
-            /*
+            
             if (block.vtx[0].vout[DevIndex].nValue < block_value * Params().GetDevFee() / 100 || block.vtx[0].vout[FoudIndex].nValue < block_value * Params().GetFundFee() / 100)
                 return state.DoS(100, error("CheckBlock() : coinbase do not have the enough reward for dev or fund."),
                 REJECT_INVALID, "bad-cb-reward-invalid");
 
-            */
+            
 
         }
         

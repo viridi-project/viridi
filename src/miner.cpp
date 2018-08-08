@@ -356,7 +356,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             txReward.vout[reward_out_idx].nValue -= mn_reward;
 
             // VIRIDI fees
-            /*
+            
             CScript scriptDevPubKeyIn  = CScript{} << Params().xDNADevKey() << OP_CHECKSIG;
             CScript scriptFundPubKeyIn = CScript{} << Params().xDNAFundKey() << OP_CHECKSIG;
 
@@ -367,7 +367,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             txReward.vout.emplace_back(vFundReward, scriptFundPubKeyIn);
 
             txReward.vout[reward_out_idx].nValue -= (vDevReward + vFundReward);
-            */
+            
 
             pblock->vtx[reward_tx_idx] = txReward;
         }
