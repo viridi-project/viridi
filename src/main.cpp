@@ -3258,7 +3258,7 @@ bool CheckWork(const CBlock block, CBlockIndex* const pindexPrev)
     if (!pindexPrev)
         return error("%s : null pindexPrev for block %s", __func__, block.GetHash().ToString().c_str());
 
-    unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev, block.nTime);
+    unsigned int nBitsRequired = GetNextWorkRequired(pindexPrev);
 
     if (block.nBits != nBitsRequired)
         return error("%s : incorrect proof of work at %d", __func__, pindexPrev->nHeight + 1);

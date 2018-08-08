@@ -17,7 +17,7 @@
 #include <math.h>
 
 
-unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, uint32_t nTime)
+unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast)
 {
     /* current difficulty formula, VIRIDI - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
     const CBlockIndex* BlockLastSolved = pindexLast;
