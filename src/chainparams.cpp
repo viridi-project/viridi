@@ -143,12 +143,13 @@ public:
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         bnStartWork = ~uint256(0) >> 24;
 
-        
+        /*
         subsidySwitchPoints = {
-            {0         ,   1 * COIN},
+            {0, 5.7 * COIN},
         };
+        */
         
-        assert(subsidySwitchPoints.size());
+        //assert(subsidySwitchPoints.size());
 
 
         nMaxReorganizationDepth = 100;
@@ -255,7 +256,7 @@ public:
         bnStartWork = bnProofOfWorkLimit;
 
         subsidySwitchPoints = {
-            {0         ,   1 * COIN},
+            {0, 5.7 * COIN},
         };
         
         assert(subsidySwitchPoints.size());
