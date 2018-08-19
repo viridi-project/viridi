@@ -77,7 +77,7 @@ int64_t nReserveBalance = 0;
  * so it's still 10 times lower comparing to bitcoin.
  */
 //CFeeRate minRelayTxFee = CFeeRate(10000);
-CFeeRate minRelayTxFee = CFeeRate(1000);
+CFeeRate minRelayTxFee = CFeeRate(10000);
 
 CTxMemPool mempool(::minRelayTxFee);
 
@@ -1628,46 +1628,46 @@ CAmount GetBlockValue(int nHeight)
 
       // POS Year 1
     } else if (nHeight <= 1965600 && nHeight > Params().LAST_POW_BLOCK()) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 2
     } else if (nHeight <= 2491200 && nHeight >= 1965601) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 3
     } else if (nHeight <= 3016800 && nHeight >= 2491201) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 4
     } else if (nHeight <= 3542400 && nHeight >= 3016801) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 5
     } else if (nHeight <= 4068000 && nHeight >= 3542401) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 6
     } else if (nHeight <= 4593600 && nHeight >= 4068001) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 7
     } else if (nHeight <= 5119200 && nHeight >= 4593601) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 8
     } else if (nHeight <= 5644800 && nHeight >= 5119201) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 9
     } else if (nHeight <= 6170400 && nHeight >= 5644801) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 10
     } else if (nHeight <= 6696000 && nHeight >= 6170401) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 11
     } else if (nHeight <= 7221600 && nHeight >= 6696001) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 12
     } else if (nHeight <= 7747200 && nHeight >= 7221601) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 13
     } else if (nHeight <= 8272800 && nHeight >= 7747201) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 14
     } else if (nHeight <= 8798400 && nHeight >= 8272801) {
-        return 5.7 * COIN;
+        return 5 * COIN;
       // POS Year 15
     } else if (nHeight >= 8798401) {
         return 1 * COIN;
@@ -1686,7 +1686,7 @@ int64_t GetMasternodePayment(int nHeight, unsigned mnlevel, int64_t blockValue)
     switch(mnlevel)
     {
         case 1:
-            return blockValue / 100 * 10;
+            return blockValue / 100 * 8;
 
         case 2:
             return blockValue / 100 * 30;

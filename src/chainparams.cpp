@@ -96,7 +96,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     boost::assign::map_list_of(0, uint256("eebb794bb85c4eaecbb0be5d5cd68fb84480feacf8ca10ebe90218b99c16392e"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1506861240,
+    1475325240,
     0,
     250};
 
@@ -130,10 +130,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x10;
-        pchMessageStart[1] = 0xe0;
-        pchMessageStart[2] = 0xef;
-        pchMessageStart[3] = 0x28;
+        pchMessageStart[0] = 0x20;
+        pchMessageStart[1] = 0xe1;
+        pchMessageStart[2] = 0xcf;
+        pchMessageStart[3] = 0x18;
         vAlertPubKey = ParseHex("04A2B684CBABE97BA08A35EA388B06A6B03E13DFBA974466880AF4CAE1C5B606A751BF7C5CBDE5AB90722CF5B1EC1AADA6D24D607870B6D6B5D684082655404C8D");
         //vVIRIDIDevKey = ParseHex("03dcc950b218cab9e779f43052e74e006d4b6027b3a18d269a8d2d454f922165b7"); // DevPubKey for fees
         //vVIRIDIFundKey = ParseHex("031cb957ee55ab154498496ba47a37cc18d9d1c5e7617a491288c25417163acc9e"); // FundPubKey for fees
@@ -145,7 +145,7 @@ public:
 
         
         subsidySwitchPoints = {
-            {0         ,   1 * COIN},
+            {0 , 5 * COIN},
         };
         
         assert(subsidySwitchPoints.size());
@@ -275,12 +275,12 @@ public:
 
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1506861240;
+        genesis.nTime = 1475325240;
         genesis.nNonce = 1656106;
 
         hashGenesisBlock = genesis.GetHash();
 
-        //MineGenesis(genesis);
+        MineGenesis(genesis);
 
         assert(hashGenesisBlock == uint256("000007c0877908a87c8d7bf013d37f48acbc9fe5a7de471650e3dd9a96acfdeb"));
 
