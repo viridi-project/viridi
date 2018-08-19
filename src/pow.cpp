@@ -34,7 +34,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast)
         return Params().StartWork().GetCompact();
     }
 
-    //if (pindexLast->nHeight > Params().LAST_POW_BLOCK()) {
+    if (pindexLast->nHeight > Params().LAST_POW_BLOCK()) {
         uint256 bnTargetLimit = (~uint256(0) >> 24);
         int64_t nTargetSpacing = 60;
         int64_t nTargetTimespan = 60 * 40;
@@ -59,9 +59,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast)
             bnNew = bnTargetLimit;
 
         return bnNew.GetCompact();
-    //}
+    }
 
-    /*
     for (unsigned int i = 1; BlockReading && BlockReading->nHeight > 0; i++) {
         if (PastBlocksMax > 0 && i > PastBlocksMax) {
             break;
@@ -108,7 +107,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast)
     }
 
     return bnNew.GetCompact();
-    */
 }
 
 bool CheckProofOfWork(uint256 hash, unsigned int nBits)
