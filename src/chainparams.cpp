@@ -214,7 +214,7 @@ public:
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
         fRequireRPCPassword = true;
-        fMiningRequiresPeers = false;
+        fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = true;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
