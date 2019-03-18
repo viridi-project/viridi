@@ -1,4 +1,3 @@
-contrib/seeds/*
 depends/work/
 depends/sources/
 depends/x86_64-w64-mingw32/
