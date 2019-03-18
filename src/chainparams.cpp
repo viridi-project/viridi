@@ -201,7 +201,8 @@ public:
         assert(hashGenesisBlock == uint256("00000360f4ecb3cd3966fa9c2d22e0010172f6098e17348797339aa92a7d60f2"));
         assert(genesis.hashMerkleRoot == uint256("eebb794bb85c4eaecbb0be5d5cd68fb84480feacf8ca10ebe90218b99c16392e"));
 
-        //vSeeds.push_back(CDNSSeedData("viridicoin.info", "dnsseed.viridicoin.info"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("viridicoin.net", "dnsseed.viridicoin.net"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("viridicoin.info", "dnsseed.viridicoin.info"));     // Secondary DNS Seeder
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 70);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 8);
