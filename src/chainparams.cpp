@@ -287,7 +287,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        //vSeeds.push_back(CDNSSeedData("viridi.io", "seed01.viridi.io"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("viridicoin.net", "testnet.viridicoin.net"));     // Primary DNS Seeder
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 132); // Testnet VIRIDI addresses start with 'v'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet VIRIDI script addresses start with '8' or '9'
