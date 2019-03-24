@@ -82,29 +82,29 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //    timestamp before)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("00000360f4ecb3cd3966fa9c2d22e0010172f6098e17348797339aa92a7d60f2"));
+    boost::assign::map_list_of(0, uint256("00000064cc29867144b506a884f1a7618c0a18ab63269a214270720ec5334cf4"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1506861240, // * UNIX timestamp of last checkpoint block
+    1506661240, // * UNIX timestamp of last checkpoint block
     50,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("000007ae4a6b0aed6903ccb741b22f40580871d191c3ecac0893676ca00eba2c"));
+    boost::assign::map_list_of(0, uint256("00000aca7e770c9b2e08803e7ba4ab8a396f66e112ed9afe8a69f2b19979f71f"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1475325240,
+    1475325241,
     0,
     250};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
-    boost::assign::map_list_of(0, uint256("00d7fc2234f98c208e1ef2a30b9235f8dab16e9cbd9ac622b2de49e381deb9d0"));
+    boost::assign::map_list_of(0, uint256("08696abcd177ae93f3808f4529c559a81baff229f27d11148648983e3a4e9cdc"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1443702840,
+    1443702841,
     0,
     100};
 
@@ -179,7 +179,7 @@ public:
          *   vMerkleTree: e0028e
          */
         
-        const char* pszTimestamp = "The born of Viridi - 2017-10-01 12:34:00";
+        const char* pszTimestamp = "The born of Viridi - 2017-10-01 12:34:55";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -190,16 +190,16 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1506861240;
+        genesis.nTime = 1506661240;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 3072955;
+        genesis.nNonce = 42250;
 
         hashGenesisBlock = genesis.GetHash();
 
-        //MineGenesis(genesis);
+       // MineGenesis(genesis);
 
-        assert(hashGenesisBlock == uint256("00000360f4ecb3cd3966fa9c2d22e0010172f6098e17348797339aa92a7d60f2"));
-        assert(genesis.hashMerkleRoot == uint256("eebb794bb85c4eaecbb0be5d5cd68fb84480feacf8ca10ebe90218b99c16392e"));
+       assert(hashGenesisBlock == uint256("00000064cc29867144b506a884f1a7618c0a18ab63269a214270720ec5334cf4"));
+       assert(genesis.hashMerkleRoot == uint256("b6ea68dcd14fc6fa11217cee511d7e4a48d9a5cc06b3a7f097b35fd7aef53243"));
 
        //vSeeds.push_back(CDNSSeedData("viridicoin.net", "dnsseed.viridicoin.net"));     // Primary DNS Seeder
        //vSeeds.push_back(CDNSSeedData("viridicoin.info", "dnsseed.viridicoin.info"));     // Secondary DNS Seeder
@@ -215,7 +215,7 @@ public:
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
         fRequireRPCPassword = true;
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = true;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -277,13 +277,13 @@ public:
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1475325240;
-        genesis.nNonce = 2747070;
+        genesis.nNonce = 3322234;
 
         hashGenesisBlock = genesis.GetHash();
 
         //MineGenesis(genesis);
 
-        assert(hashGenesisBlock == uint256("000007ae4a6b0aed6903ccb741b22f40580871d191c3ecac0893676ca00eba2c"));
+        assert(hashGenesisBlock == uint256("00000aca7e770c9b2e08803e7ba4ab8a396f66e112ed9afe8a69f2b19979f71f"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -350,16 +350,16 @@ public:
         nMinerThreads = 1;
         nTargetSpacing = 1 * 60;        // VIRIDI: 1 minute
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1443702840;
+        genesis.nTime = 1443702841;
         genesis.nBits = 0x207fffff;
         genesis.nNonce = 1;
 
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 22706;
 
-        
+        //MineGenesis(genesis);
 
-        assert(hashGenesisBlock == uint256("00d7fc2234f98c208e1ef2a30b9235f8dab16e9cbd9ac622b2de49e381deb9d0"));
+        assert(hashGenesisBlock == uint256("08696abcd177ae93f3808f4529c559a81baff229f27d11148648983e3a4e9cdc"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
