@@ -30,9 +30,9 @@ promising and ambitious future ahead
 <tr><td>Instamine protection</td><td>First 520 blocks</td></tr>
 <tr><td>Hashing algorithm</td><td>Keccak</td></tr>
 <tr><td>POS starting block</td><td>521</td></tr>
-<tr><td>POS block reward(per year)</td><td>3.000.000 VIC</td></tr>
-<tr><td>POS block reward(per month)</td><td>246.570 VIC</td></tr>
-<tr><td>POS block reward(per day)</td><td>8219 VIC</td></tr>
+<tr><td>POS block reward(per year)</td><td>~2.628.000 VIC</td></tr>
+<tr><td>POS block reward(per month)</td><td>~219.000 VIC</td></tr>
+<tr><td>POS block reward(per day)</td><td>~8219 VIC</td></tr>
 <tr><td>POS block reward distribution</td><td>SeeSaw</td></tr>
 <tr><td>Estimated VIC supply during 15 years of POS</td><td>45.000.000</td></tr>
 <tr><td>Blocksize</td><td>1 MB</td></tr>
@@ -69,9 +69,9 @@ network stability and performing additional functions:
 
 <table>
 <tr><th>Duration</th><th>Block reward</th></tr>
-<tr><td>Year</td><td>3.000.000 VIC + transaction fees</td></tr>
+<tr><td>Year</td><td>2.628.000 VIC + transaction fees</td></tr>
 <tr><td>Month</td><td>30% from total block reward + transaction fees</td></tr>
-<tr><td>Day</td><td>8219 VIC + transaction fees</td></tr>
-<tr><td>Hour</td><td>342 VIC + transaction fees</td></tr>
-<tr><td>Minute</td><td>5.7 VIC + transaction fees </td></tr>
+<tr><td>Day</td><td>7.200 VIC + transaction fees</td></tr>
+<tr><td>Hour</td><td>300 VIC + transaction fees</td></tr>
+<tr><td>Minute</td><td>5 VIC + transaction fees </td></tr>
 </table>
