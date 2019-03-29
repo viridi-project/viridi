@@ -27,34 +27,6 @@ struct SeedSpec6 {
 #include "chainparamsseeds.h"
 
 
-void MineGenesis(CBlock genesis){
-    // This will figure out a valid hash and Nonce if you're creating a different genesis block:
-    uint256 hashTarget = uint256().SetCompact(genesis.nBits);
-    printf("Target: %s\n", hashTarget.GetHex().c_str());
-    uint256 newhash = genesis.GetHash();
-    uint256 besthash;
-    memset(&besthash,0xFF,32);
-    while (newhash > hashTarget) {
-        ++genesis.nNonce;
-        if (genesis.nNonce == 0){
-            printf("NONCE WRAPPED, incrementing time");
-            ++genesis.nTime;
-        }
-    newhash = genesis.GetHash();
-    if(newhash < besthash){
-        besthash=newhash;
-        printf("New best: %s\n", newhash.GetHex().c_str());
-    }
-    }
-    printf("block.nTime = %u \n", genesis.nTime);
-    printf("block.nNonce = %u \n", genesis.nNonce);
-    printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-    printf("Gensis Hash Merkle = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-
-    //printf("Found Genesis, Nonce: %ld, Hash: %s\n", genesis.nNonce, genesis.GetHash().GetHex().c_str());
-    //printf("Gensis Hash Merkle: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-}
-
 /**
  * Main network
  */
@@ -82,12 +54,13 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //    timestamp before)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"));
+    boost::assign::map_list_of(0, uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"))
+                              (180, uint256("00000000001df531fe94ef3af10a042c1f5c701b51e8d206d948ec4682cd4ec5"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1506661240, // * UNIX timestamp of last checkpoint block
-    50,          // * total number of transactions between genesis and last checkpoint
+    1553854711, // * UNIX timestamp of last checkpoint block
+    180,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
@@ -196,13 +169,11 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
 
-       //MineGenesis(genesis);
+        assert(hashGenesisBlock == uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"));
+        assert(genesis.hashMerkleRoot == uint256("d78779958c0edaa4529afc2ed0c8621371c5cae6d2400fb5557a52ccc5daabdf"));
 
-       assert(hashGenesisBlock == uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"));
-       assert(genesis.hashMerkleRoot == uint256("d78779958c0edaa4529afc2ed0c8621371c5cae6d2400fb5557a52ccc5daabdf"));
-
-       //vSeeds.push_back(CDNSSeedData("viridicoin.net", "dnsseed.viridicoin.net"));     // Primary DNS Seeder
-       //vSeeds.push_back(CDNSSeedData("viridicoin.info", "dnsseed.viridicoin.info"));     // Secondary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("viridicoin.net", "dnsseed.viridicoin.net"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("viridicoin.info", "dnsseed.viridicoin.info"));     // Secondary DNS Seeder
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 70);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 8);
@@ -281,13 +252,11 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
 
-        //MineGenesis(genesis);
-
         assert(hashGenesisBlock == uint256("0000087d43107aafe0b7076b419df4a013b91fc94552c1ed778d2bbd73c2d5c5"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        //vSeeds.push_back(CDNSSeedData("viridicoin.net", "testnet.viridicoin.net"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("viridicoin.net", "testnet.viridicoin.net"));     // Primary DNS Seeder
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 132); // Testnet VIRIDI addresses start with 'v'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet VIRIDI script addresses start with '8' or '9'
