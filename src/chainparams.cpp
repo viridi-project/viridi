@@ -82,7 +82,7 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //    timestamp before)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("00000064cc29867144b506a884f1a7618c0a18ab63269a214270720ec5334cf4"));
+    boost::assign::map_list_of(0, uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
@@ -93,18 +93,18 @@ static const Checkpoints::CCheckpointData data = {
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("00000aca7e770c9b2e08803e7ba4ab8a396f66e112ed9afe8a69f2b19979f71f"));
+    boost::assign::map_list_of(0, uint256("0000087d43107aafe0b7076b419df4a013b91fc94552c1ed778d2bbd73c2d5c5"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1475325241,
+    1506261240,
     0,
     250};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
-    boost::assign::map_list_of(0, uint256("08696abcd177ae93f3808f4529c559a81baff229f27d11148648983e3a4e9cdc"));
+    boost::assign::map_list_of(0, uint256("136d2ef0d6ddad1972455a33a632ca9819f262c2dfd94d51cc4673150dec539e"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1443702841,
+    1506262240,
     0,
     100};
 
@@ -179,7 +179,7 @@ public:
          *   vMerkleTree: e0028e
          */
         
-        const char* pszTimestamp = "The born of Viridi - 2017-10-01 12:34:55";
+        const char* pszTimestamp = "The born of Viridi - 2017-09-29 05:00:40";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -192,14 +192,14 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1506661240;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 42250;
+        genesis.nNonce = 3785065;
 
         hashGenesisBlock = genesis.GetHash();
 
-       // MineGenesis(genesis);
+       //MineGenesis(genesis);
 
-       assert(hashGenesisBlock == uint256("00000064cc29867144b506a884f1a7618c0a18ab63269a214270720ec5334cf4"));
-       assert(genesis.hashMerkleRoot == uint256("b6ea68dcd14fc6fa11217cee511d7e4a48d9a5cc06b3a7f097b35fd7aef53243"));
+       assert(hashGenesisBlock == uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"));
+       assert(genesis.hashMerkleRoot == uint256("d78779958c0edaa4529afc2ed0c8621371c5cae6d2400fb5557a52ccc5daabdf"));
 
        //vSeeds.push_back(CDNSSeedData("viridicoin.net", "dnsseed.viridicoin.net"));     // Primary DNS Seeder
        //vSeeds.push_back(CDNSSeedData("viridicoin.info", "dnsseed.viridicoin.info"));     // Secondary DNS Seeder
@@ -215,7 +215,7 @@ public:
         //convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
         fRequireRPCPassword = true;
-        fMiningRequiresPeers = true;
+        fMiningRequiresPeers = false;
         fDefaultConsistencyChecks = true;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
@@ -276,14 +276,14 @@ public:
 
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
-        genesis.nTime = 1475325240;
-        genesis.nNonce = 3322234;
+        genesis.nTime = 1506261240;
+        genesis.nNonce = 348666;
 
         hashGenesisBlock = genesis.GetHash();
 
         //MineGenesis(genesis);
 
-        assert(hashGenesisBlock == uint256("00000aca7e770c9b2e08803e7ba4ab8a396f66e112ed9afe8a69f2b19979f71f"));
+        assert(hashGenesisBlock == uint256("0000087d43107aafe0b7076b419df4a013b91fc94552c1ed778d2bbd73c2d5c5"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -350,7 +350,7 @@ public:
         nMinerThreads = 1;
         nTargetSpacing = 1 * 60;        // VIRIDI: 1 minute
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        genesis.nTime = 1443702841;
+        genesis.nTime = 1506262240;
         genesis.nBits = 0x207fffff;
         genesis.nNonce = 1;
 
@@ -359,7 +359,7 @@ public:
 
         //MineGenesis(genesis);
 
-        assert(hashGenesisBlock == uint256("08696abcd177ae93f3808f4529c559a81baff229f27d11148648983e3a4e9cdc"));
+        assert(hashGenesisBlock == uint256("136d2ef0d6ddad1972455a33a632ca9819f262c2dfd94d51cc4673150dec539e"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
