@@ -186,7 +186,7 @@ public:
         };
         assert(subsidySwitchPoints_F2_0.size());
 
-        subsidyScheduleStart_F2    = 2000; // block#XXXXXX ~= nF2Timestamp + 1 day
+        subsidyScheduleStart_F2    = 4000; // block#XXXXXX ~= nF2Timestamp + 1 day
         subsidyDecreaseInterval_F2 = 43200;  // 43200 bloks ~= 30 days
         subsidyDecreaseCount_F2    = 23;     // 23
         subsidyDecreaseValue_F2    = 694;    // 694 = 6,94% * 100
