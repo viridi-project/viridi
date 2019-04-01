@@ -44,8 +44,8 @@ const std::string CLIENT_NAME("VIRIDI Core");
 
 //! git will put "#define GIT_ARCHIVE 1" on the next line inside archives.
 #ifdef GIT_ARCHIVE
-#define GIT_COMMIT_ID "96c0372"
-#define GIT_COMMIT_DATE "2018-07-23 11:08:58 +0300"
+#define GIT_COMMIT_ID "cbcb549"
+#define GIT_COMMIT_DATE "Tue, 9 Feb 2016 16:54:57 -0500"
 #endif
 
 #define BUILD_DESC_WITH_SUFFIX(maj, min, rev, build, suffix) \

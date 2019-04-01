@@ -18,10 +18,16 @@ installing the toolchain will be different.
 
 First install the toolchains:
 
-    sudo apt-get install g++-mingw-w64-i686 mingw-w64-i686-dev g++-mingw-w64-x86-64 mingw-w64-x86-64-dev
+    sudo apt-get install g++-mingw-w64-i686 mingw-w64-i686-dev g++-mingw-w64-x86-64 mingw-w64-x86-64-dev git
+
+Acquire the source in the usual way:
+
+    git clone https://github.com/VIRIDI-Core/VIRIDI.git
 
 To build executables for Windows 32-bit:
 
+    cd VIRIDI
+    PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
     cd depends
     make HOST=i686-w64-mingw32 -j4
     cd ..
@@ -30,6 +36,8 @@ To build executables for Windows 32-bit:
 
 To build executables for Windows 64-bit:
 
+    cd VIRIDI
+    PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
     cd depends
     make HOST=x86_64-w64-mingw32 -j4
     cd ..
@@ -37,4 +45,3 @@ To build executables for Windows 64-bit:
     make
 
 For further documentation on the depends system see [README.md](../depends/README.md) in the depends directory.
-

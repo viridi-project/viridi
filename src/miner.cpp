@@ -118,14 +118,19 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     if (fProofOfStake) {
         boost::this_thread::interruption_point();
         pblock->nTime = GetAdjustedTime();
-        CBlockIndex* pindexPrev = chainActive.Tip();
-        pblock->nBits = GetNextWorkRequired(pindexPrev);
+
+        { LOCK(cs_main);
+
+            CBlockIndex* pindexPrev = chainActive.Tip();
+            pblock->nBits = GetNextWorkRequired(pindexPrev, pblock->nTime);
+        }
+
         CMutableTransaction txCoinStake;
         int64_t nSearchTime = pblock->nTime; // search to current time
         bool fStakeFound = false;
         if (nSearchTime >= nLastCoinStakeSearchTime) {
             unsigned int nTxNewTime = 0;
-            if (pwallet->CreateCoinStake(*pwallet, pblock->nBits, nSearchTime - nLastCoinStakeSearchTime, txCoinStake, nTxNewTime)) {
+            if (pwallet->CreateCoinStake(*pwallet, pblock->nTime, pblock->nBits, nSearchTime - nLastCoinStakeSearchTime, txCoinStake, nTxNewTime)) {
                 pblock->nTime = nTxNewTime;
 //                pblock->vtx[0].vout[0].SetEmpty();
                 pblock->vtx.push_back(CTransaction(txCoinStake));
@@ -328,7 +333,10 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             }
         }
 
-        CAmount block_value = GetBlockValue(nHeight - 1);
+        if (!fProofOfStake)
+            UpdateTime(pblock, pindexPrev);
+
+        CAmount block_value = GetBlockValue(nHeight, pblock->nTime);
 
         txNew.vin[0].scriptSig = CScript() << nHeight << OP_0;
 
@@ -341,7 +349,6 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
         pblock->vtx[0] = txNew;
 
-        
         if(nHeight > 1) { // exclude premine
 
             auto reward_tx_idx = fProofOfStake ? 1 : 0;
@@ -351,7 +358,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
             auto reward_out_idx = txReward.vout.size() - 1;
 
             // Masternode payments
-            auto mn_reward = masternodePayments.FillBlockPayee(txReward, block_value, fProofOfStake);
+            auto mn_reward = masternodePayments.FillBlockPayee(txReward, pblock->nTime, block_value, fProofOfStake);
 
             txReward.vout[reward_out_idx].nValue -= mn_reward;
 
@@ -368,10 +375,8 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
             txReward.vout[reward_out_idx].nValue -= (vDevReward + vFundReward);
             */
-
             pblock->vtx[reward_tx_idx] = txReward;
         }
-        
 
         nLastBlockTx = nBlockTx;
         nLastBlockSize = nBlockSize;
@@ -379,9 +384,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
         // Fill in header
         pblock->hashPrevBlock = pindexPrev->GetBlockHash();
-        if (!fProofOfStake)
-            UpdateTime(pblock, pindexPrev);
-        pblock->nBits = GetNextWorkRequired(pindexPrev);
+        pblock->nBits = GetNextWorkRequired(pindexPrev, pblock->nTime);
         pblock->nNonce = 0;
         pblocktemplate->vTxSigOps[0] = GetLegacySigOpCount(pblock->vtx[0]);
 
@@ -389,7 +392,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
         if (!TestBlockValidity(state, *pblock, pindexPrev, false, false)) {
             LogPrintf("CreateNewBlock() : TestBlockValidity failed\n");
             mempool.clear();
-            return NULL;
+            return nullptr;
         }
     }
 
@@ -552,6 +555,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         //
         // Search
         //
+
         int64_t nStart = GetTime();
         uint256 hashTarget = uint256().SetCompact(pblock->nBits);
         while (true) {

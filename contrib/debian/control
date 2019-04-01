@@ -21,8 +21,8 @@ Build-Depends: debhelper,
  libprotobuf-dev, protobuf-compiler
 Standards-Version: 1.0
 Homepage: http://www.viridi.io
-Vcs-Git: git://github.com/viridi-project/VIRIDI.git
-Vcs-Browser: http://github.com/viridi-project/VIRIDI
+Vcs-Git: git://github.com/VIRIDI-Core/VIRIDI.git
+Vcs-Browser: http://github.com/VIRIDI-Core/VIRIDI
 
 Package: viridid
 Architecture: any

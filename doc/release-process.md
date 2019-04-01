@@ -3,7 +3,7 @@ Release Process
 
 Before every release candidate:
 
-* Update translations (ping Fuzzbawls on Slack) see [translation_process.md](https://github.com/viridi-project/VIRIDI/blob/master/doc/translation_process.md#synchronising-translations).
+* Update translations (ping Fuzzbawls on Slack) see [translation_process.md](https://github.com/VIRIDI-Core/VIRIDI/blob/master/doc/translation_process.md#synchronising-translations).
 
 Before every minor and major release:
 
@@ -266,6 +266,6 @@ Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spur
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/viridi-project/VIRIDI/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://github.com/VIRIDI-Core/VIRIDI/releases/new) with a link to the archived release notes.
 
   - Celebrate

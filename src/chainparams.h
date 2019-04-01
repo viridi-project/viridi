@@ -61,7 +61,7 @@ public:
     int GetDefaultPort() const { return nDefaultPort; }
     const uint256& ProofOfWorkLimit() const { return bnProofOfWorkLimit; }
     const uint256& StartWork() const { return bnStartWork; }
-    CAmount SubsidyValue(SubsidySwitchPoints::key_type level) const;
+    CAmount SubsidyValue(SubsidySwitchPoints::key_type level, uint32_t nTime, int nHeight) const;
     /** Used to check majorities for block version upgrade */
     int EnforceBlockUpgradeMajority() const { return nEnforceBlockUpgradeMajority; }
     int RejectBlockOutdatedMajority() const { return nRejectBlockOutdatedMajority; }
@@ -110,8 +110,11 @@ public:
     int ModifierUpgradeBlock() const { return nModifierUpdateBlock; }
     int LAST_POW_BLOCK() const { return nLastPOWBlock; }
     int StartMNPaymentsBlock() const {return nStartMasternodePaymentsBlock; }
-    
-    const SubsidySwitchPoints& GetSubsidySwitchPoints() const { return subsidySwitchPoints; }
+
+    uint32_t HEXHashActivationTime() const {return nHEXHashTimestamp;}
+    uint32_t F2ActivationTime()      const {return nF2Timestamp;}
+
+    const SubsidySwitchPoints& GetSubsidySwitchPoints(uint32_t nTime, int nHeight) const;
 
 protected:
     CChainParams() {}
@@ -120,10 +123,10 @@ protected:
     MessageStartChars pchMessageStart;
     //! Raw pub key bytes for the broadcast alert signing key.
     std::vector<unsigned char> vAlertPubKey;
-    std::vector<unsigned char> vVIRIDIDevKey;
-    std::vector<unsigned char> vVIRIDIFundKey;
-    int nDevFee;
-    int nFundFee;
+    //std::vector<unsigned char> vVIRIDIDevKey;
+    //std::vector<unsigned char> vVIRIDIFundKey;
+    //int nDevFee;
+    //int nFundFee;
     int nDefaultPort;
     uint256 bnProofOfWorkLimit;
     uint256 bnStartWork;
@@ -159,6 +162,19 @@ protected:
     std::string strSporkKey;
     std::string strObfuscationPoolDummyAddress;
     int64_t nStartMasternodePayments;
+
+    uint32_t            nHEXHashTimestamp;
+    SubsidySwitchPoints subsidySwitchPoints_HEXHash;
+
+    uint32_t                                nF2Timestamp;
+    SubsidySwitchPoints                     subsidySwitchPoints_F2_0;
+    std::map<uint32_t, SubsidySwitchPoints> subsidySwitchPointsSchedule_F2;
+    uint32_t                                subsidyScheduleStart_F2;
+    uint32_t                                subsidyDecreaseInterval_F2;
+    uint32_t                                subsidyDecreaseCount_F2;
+    uint32_t                                subsidyDecreaseValue_F2;
+
+    void initSubsidySwitchPointsSchedule();
 };
 
 /**
