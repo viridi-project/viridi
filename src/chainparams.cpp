@@ -54,12 +54,13 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //    timestamp before)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"));
+    boost::assign::map_list_of(0, uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"))
+                              (1999, uint256("0000000000019b1034d9a6597df9a39747f6990c34b4c28aa27ca9336e81df41"))
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1506861240, // * UNIX timestamp of last checkpoint block
-    50,      // * total number of transactions between genesis and last checkpoint
+    1553999280, // * UNIX timestamp of last checkpoint block
+    2041,      // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
@@ -185,7 +186,7 @@ public:
         };
         assert(subsidySwitchPoints_F2_0.size());
 
-        subsidyScheduleStart_F2    = 177000; // block#XXXXXX ~= nF2Timestamp + 1 day
+        subsidyScheduleStart_F2    = 2000; // block#XXXXXX ~= nF2Timestamp + 1 day
         subsidyDecreaseInterval_F2 = 43200;  // 43200 bloks ~= 30 days
         subsidyDecreaseCount_F2    = 23;     // 23
         subsidyDecreaseValue_F2    = 694;    // 694 = 6,94% * 100
@@ -201,7 +202,7 @@ public:
         nAntiInstamineTime = 720; // 720 blocks with 1 reward for instamine prevention
         nMaturity = 60;
         nMasternodeCountDrift = 3;
-        nMaxMoneyOut = 367452000 * COIN;
+        nMaxMoneyOut = 200000000 * COIN;
 
         nStartMasternodePaymentsBlock = 7001;
 
@@ -265,8 +266,8 @@ public:
         strObfuscationPoolDummyAddress = "VU1xKUcTLW4TqNbtyjgMBGhw9aNF7PJHnY";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
 
-        nHEXHashTimestamp = 1533567600; // 6  August  2018, 15:00:00 GMT+00:00
-        nF2Timestamp      = 1540728000; // 28 October 2018, 12:00:00 GMT+00:00
+        nHEXHashTimestamp = 1554206400; // 6  August  2018, 15:00:00 GMT+00:00
+        nF2Timestamp      = 1554206400; // 28 October 2018, 12:00:00 GMT+00:00
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
