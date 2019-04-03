@@ -1647,7 +1647,7 @@ int64_t GetMasternodePayment(int nHeight, uint32_t nTime, unsigned mnlevel, int6
     //if(nTime <= Params().F2ActivationTime())
     //    coeff = { 8,  30, 60 };
     //else
-    coeff = { 5, 15, 25 };
+    coeff = { 8, 30, 60 };
 
     if(mnlevel - 1 < coeff.size())
         return blockValue / 100 * coeff[mnlevel - 1];
