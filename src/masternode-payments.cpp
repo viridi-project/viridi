@@ -58,8 +58,8 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
     }
 
     // disable mn payments checks till fork activation
-    if(Params().F2ActivationTime() <= block.nTime)
-        return true;
+    //if(Params().F2ActivationTime() <= block.nTime)
+    //    return true;
 
     const CTransaction& txNew = (nBlockHeight > Params().LAST_POW_BLOCK() ? block.vtx[1] : block.vtx[0]);
 
