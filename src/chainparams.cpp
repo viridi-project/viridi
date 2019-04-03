@@ -198,12 +198,12 @@ public:
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
         nTargetSpacing = 1 * 60;  // VIRIDI: 1 minute
-        nAntiInstamineTime = 500; // 720 blocks with 1 reward for instamine prevention
+        nAntiInstamineTime = 75; // 75 blocks with 1 reward for instamine prevention
         nMaturity = 60;
         nMasternodeCountDrift = 3;
         nMaxMoneyOut = 200000000 * COIN;
 
-        nStartMasternodePaymentsBlock = 7001;
+        nStartMasternodePaymentsBlock = 90;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 1440000;
@@ -265,7 +265,7 @@ public:
         strObfuscationPoolDummyAddress = "VU1xKUcTLW4TqNbtyjgMBGhw9aNF7PJHnY";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
 
-        nHEXHashTimestamp = 1554292800; // Wednesday, 3 April 2019 12:00:00 GMT+00:00
+        nHEXHashTimestamp = 1554278679; // Wednesday, 3 April 2019 12:00:00 GMT+00:00
         nF2Timestamp      = 1869912000; // Tuesday,   3 April 2029 12:00:00 GMT+00:00
     }
 
