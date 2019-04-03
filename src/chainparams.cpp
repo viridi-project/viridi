@@ -54,26 +54,26 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //    timestamp before)
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
-    boost::assign::map_list_of(0, uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"));
+    boost::assign::map_list_of(0, uint256("00000b30721e977a9cd087fea593d1809c74386177afa76108b9f7b4eccc6e5e"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1506661240, // * UNIX timestamp of last checkpoint block
+    1506654183, // * UNIX timestamp of last checkpoint block
     50,      // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
-    boost::assign::map_list_of(0, uint256("0000087d43107aafe0b7076b419df4a013b91fc94552c1ed778d2bbd73c2d5c5"));
+    boost::assign::map_list_of(0, uint256("000007cd8923b9abe8854afe9b1d5fee30d50d9a48c00ea108f69a59639656ad"));
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1506661240,
+    1506261240,
     0,
     250};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
-    boost::assign::map_list_of(0, uint256("136d2ef0d6ddad1972455a33a632ca9819f262c2dfd94d51cc4673150dec539e"));
+    boost::assign::map_list_of(0, uint256("46e179b98313838727265d83ffd60d50ea38219221160db357477ec073caa1ce"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
     1506262240,
@@ -219,7 +219,7 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "The born of Viridi - 2017-09-29 05:00:40";
+        const char* pszTimestamp = "The born of Viridi - 2017-09-29 03:03:03";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -230,14 +230,14 @@ public:
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1506661240;
+        genesis.nTime = 1506654183;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 3785065;
+        genesis.nNonce = 960862;
 
         hashGenesisBlock = genesis.GetKeccakHash();
 
-        assert(hashGenesisBlock == uint256("000008e3c0d123efe9f5a91b2b537317f97134d1f295931f3298d19978e718e1"));
-        assert(genesis.hashMerkleRoot == uint256("d78779958c0edaa4529afc2ed0c8621371c5cae6d2400fb5557a52ccc5daabdf"));
+        assert(hashGenesisBlock == uint256("00000b30721e977a9cd087fea593d1809c74386177afa76108b9f7b4eccc6e5e"));
+        assert(genesis.hashMerkleRoot == uint256("6b6c68db10692dc2d4c6685c7f6ffca1e07aaf3b802cef9b0459a34c626c1190"));
 
         //vSeeds.push_back(CDNSSeedData("viridi.io", "seeds.seeder01.viridi.io"));     // Primary DNS Seeder
 
@@ -310,16 +310,16 @@ public:
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = std::numeric_limits<decltype(nModifierUpdateBlock)>::max();
-        nMaxMoneyOut = 1000000000 * COIN;
+        nMaxMoneyOut = 200000000 * COIN;
 
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1506261240;
-        genesis.nNonce = 348666;
+        genesis.nNonce = 1396025;
 
         hashGenesisBlock = genesis.GetKeccakHash();
 
-        assert(hashGenesisBlock == uint256("0000087d43107aafe0b7076b419df4a013b91fc94552c1ed778d2bbd73c2d5c5"));
+        assert(hashGenesisBlock == uint256("000007cd8923b9abe8854afe9b1d5fee30d50d9a48c00ea108f69a59639656ad"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -391,7 +391,7 @@ public:
         hashGenesisBlock = genesis.GetKeccakHash();
         nDefaultPort = 51476;
 
-        assert(hashGenesisBlock == uint256("136d2ef0d6ddad1972455a33a632ca9819f262c2dfd94d51cc4673150dec539e"));
+        assert(hashGenesisBlock == uint256("46e179b98313838727265d83ffd60d50ea38219221160db357477ec073caa1ce"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
