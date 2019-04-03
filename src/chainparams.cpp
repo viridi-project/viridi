@@ -198,12 +198,12 @@ public:
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
         nTargetSpacing = 1 * 60;  // VIRIDI: 1 minute
-        nAntiInstamineTime = 75; // 75 blocks with 1 reward for instamine prevention
+        nAntiInstamineTime = 500; // 500 blocks with 1 reward for instamine prevention
         nMaturity = 60;
         nMasternodeCountDrift = 3;
         nMaxMoneyOut = 200000000 * COIN;
 
-        nStartMasternodePaymentsBlock = 90;
+        nStartMasternodePaymentsBlock = 521;
 
         /** Height or Time Based Activations **/
         nLastPOWBlock = 1440000;
@@ -239,7 +239,7 @@ public:
         assert(hashGenesisBlock == uint256("00000b30721e977a9cd087fea593d1809c74386177afa76108b9f7b4eccc6e5e"));
         assert(genesis.hashMerkleRoot == uint256("6b6c68db10692dc2d4c6685c7f6ffca1e07aaf3b802cef9b0459a34c626c1190"));
 
-        //vSeeds.push_back(CDNSSeedData("viridi.io", "seeds.seeder01.viridi.io"));     // Primary DNS Seeder
+        vSeeds.push_back(CDNSSeedData("viridicoin.net", "seed.viridicoin.net"));     // Primary DNS Seeder
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 70);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 8);
@@ -265,8 +265,8 @@ public:
         strObfuscationPoolDummyAddress = "VU1xKUcTLW4TqNbtyjgMBGhw9aNF7PJHnY";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
 
-        nHEXHashTimestamp = 1554278679; // Wednesday, 3 April 2019 12:00:00 GMT+00:00
-        nF2Timestamp      = 1869912000; // Tuesday,   3 April 2029 12:00:00 GMT+00:00
+        nHEXHashTimestamp = 1554393844;  // Thursday, 4 April 2019 16:04:04 GMT+00:00
+        nF2Timestamp      = 1870013044; // Wednesday, 4 April 2029 16:04:04 GMT+00:00
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
