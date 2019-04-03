@@ -265,8 +265,8 @@ public:
         strObfuscationPoolDummyAddress = "VU1xKUcTLW4TqNbtyjgMBGhw9aNF7PJHnY";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
 
-        nHEXHashTimestamp = 1554206400; // 6  August  2018, 15:00:00 GMT+00:00
-        nF2Timestamp      = 1554206400; // 28 October 2018, 12:00:00 GMT+00:00
+        nHEXHashTimestamp = 1554292800; // Wednesday, 3 April 2019 12:00:00 GMT+00:00
+        nF2Timestamp      = 1869912000; // Tuesday,   3 April 2029 12:00:00 GMT+00:00
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
