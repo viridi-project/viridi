@@ -3096,8 +3096,8 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
             if(nHeight > 1) { // exclude premine
                 // The first transaction must have Fund and Dev scripts.
                 
-                CScript scriptDevPubKeyIn  = CScript() << Params().vVIRIDIDevKey() << OP_CHECKSIG;
-                CScript scriptFundPubKeyIn = CScript() << Params().vVIRIDIFundKey() << OP_CHECKSIG;
+                CScript scriptDevPubKeyIn  = CScript() << Params().xVIRIDIDevKey() << OP_CHECKSIG;
+                CScript scriptFundPubKeyIn = CScript() << Params().xVIRIDIFundKey() << OP_CHECKSIG;
                 CTxDestination DevAddress;
                 CTxDestination FundAddress;
                 ExtractDestination(scriptDevPubKeyIn, DevAddress);

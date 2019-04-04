@@ -53,8 +53,8 @@ public:
     const MessageStartChars& MessageStart() const { return pchMessageStart; }
     const std::vector<unsigned char>& AlertKey() const { return vAlertPubKey; }
 
-    const std::vector<unsigned char>& VIRIDIDevKey() const { return vVIRIDIDevKey; }
-    const std::vector<unsigned char>& VIRIDIFundKey() const { return vVIRIDIFundKey; }
+    const std::vector<unsigned char>& xVIRIDIDevKey() const { return vVIRIDIDevKey; }
+    const std::vector<unsigned char>& xVIRIDIFundKey() const { return vVIRIDIFundKey; }
     int GetDevFee() const { return nDevFee; }
     int GetFundFee() const { return nFundFee; }
 

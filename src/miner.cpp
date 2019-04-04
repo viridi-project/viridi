@@ -364,8 +364,8 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
 
             // VIRIDI fees
             
-            CScript scriptDevPubKeyIn  = CScript{} << Params().vVIRIDIDevKey() << OP_CHECKSIG;
-            CScript scriptFundPubKeyIn = CScript{} << Params().vVIRIDIFundKey() << OP_CHECKSIG;
+            CScript scriptDevPubKeyIn  = CScript{} << Params().xVIRIDIDevKey() << OP_CHECKSIG;
+            CScript scriptFundPubKeyIn = CScript{} << Params().xVIRIDIFundKey() << OP_CHECKSIG;
 
             auto vDevReward  = block_value * Params().GetDevFee() / 100;
             auto vFundReward = block_value * Params().GetFundFee() / 100;
