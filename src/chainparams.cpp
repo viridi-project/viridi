@@ -149,8 +149,8 @@ public:
         vAlertPubKey = ParseHex("04A2B684CBABE97BA08A35EA388B06A6B03E13DFBA974466880AF4CAE1C5B606A751BF7C5CBDE5AB90722CF5B1EC1AADA6D24D607870B6D6B5D684082655404C8D");
         vVIRIDIDevKey = ParseHex("0312fd2a2bb5f9265b4c951c78056d6eaf828f72ee2530c69bde39eff775381acb"); // DevPubKey for fees
         vVIRIDIFundKey = ParseHex("0205583f1a339ee4ff2f8b7d781d2eb2a686c398fa2cf8c883f6c8153abcde1f5a"); // FundPubKey for fees
-        nDevFee = 1  * (COIN/1000); // DevFee % 0.001
-        nFundFee = 1  * (COIN/1000); //FundFee % 0.001
+        nDevFee = 0.001; // DevFee %
+        nFundFee = 0.001; //FundFee %
         nDefaultPort = 2706;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         bnStartWork = ~uint256(0) >> 24;
