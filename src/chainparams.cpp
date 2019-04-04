@@ -147,10 +147,10 @@ public:
         pchMessageStart[2] = 0xcf;
         pchMessageStart[3] = 0x18;
         vAlertPubKey = ParseHex("04A2B684CBABE97BA08A35EA388B06A6B03E13DFBA974466880AF4CAE1C5B606A751BF7C5CBDE5AB90722CF5B1EC1AADA6D24D607870B6D6B5D684082655404C8D");
-        vVIRIDIDevKey = ParseHex("022168bed33339fdc945077c9056a42ceacda589b9d2c7733a72e75e7ee29ef586"); // DevPubKey for fees
-        vVIRIDIFundKey = ParseHex("03b7a94485bb264d12fbffdddff462060e51a27e55f256b62648c25c1fb8bb565c"); // FundPubKey for fees
-        nDevFee = 0.001; // DevFee %
-        nFundFee = 0.001; //FundFee %
+        vVIRIDIDevKey = ParseHex("0312fd2a2bb5f9265b4c951c78056d6eaf828f72ee2530c69bde39eff775381acb"); // DevPubKey for fees
+        vVIRIDIFundKey = ParseHex("0205583f1a339ee4ff2f8b7d781d2eb2a686c398fa2cf8c883f6c8153abcde1f5a"); // FundPubKey for fees
+        nDevFee = 1  * (COIN/1000); // DevFee % 0.001
+        nFundFee = 1  * (COIN/1000); //FundFee % 0.001
         nDefaultPort = 2706;
         bnProofOfWorkLimit = ~uint256(0) >> 20;
         bnStartWork = ~uint256(0) >> 24;
@@ -198,7 +198,7 @@ public:
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
         nTargetSpacing = 1 * 60;  // VIRIDI: 1 minute
-        nAntiInstamineTime = 100; // 500 blocks with 1 reward for instamine prevention
+        nAntiInstamineTime = 100; // 100 blocks with 1 reward for instamine prevention
         nMaturity = 60;
         nMasternodeCountDrift = 3;
         nMaxMoneyOut = 200000000 * COIN;
@@ -262,7 +262,7 @@ public:
 
         nPoolMaxTransactions = 3;
         strSporkKey = "04520C1E6A46596DD9CA9A1A69B96D630410CBA2A1047FC462ADAA5D3BE451CC43B2E30C64A03513F31B3DB9450A3FC2F742DCB4AD99450575219549890392F465";
-        strObfuscationPoolDummyAddress = "VU1xKUcTLW4TqNbtyjgMBGhw9aNF7PJHnY";
+        strObfuscationPoolDummyAddress = "VBhRbCYmDMaL1dHf1nrGE6ZxHEWmfJgUnZ";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
 
         nHEXHashTimestamp = 1554393844;  // Thursday, 4 April 2019 16:04:04 GMT+00:00
