@@ -78,7 +78,7 @@ extern double NSAppKitVersionNumber;
 #endif
 #endif
 
-#define URI_SCHEME "vic"
+#define URI_SCHEME "viridi"
 
 namespace GUIUtil
 {

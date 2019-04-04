@@ -76,11 +76,11 @@ void OptionsModel::Init()
     if (!settings.contains("nObfuscationRounds"))
         settings.setValue("nObfuscationRounds", 2);
 
-    if (!settings.contains("nAnonymizeViridiAmount"))
-        settings.setValue("nAnonymizeViridiAmount", 1000);
+    if (!settings.contains("nAnonymizeXDnaAmount"))
+        settings.setValue("nAnonymizeXDnaAmount", 1000);
     
     nObfuscationRounds = settings.value("nObfuscationRounds").toLongLong();
-    nAnonymizeViridiAmount = settings.value("nAnonymizeViridiAmount").toLongLong();
+    nAnonymizeXDnaAmount = settings.value("nAnonymizeXDnaAmount").toLongLong();
 
     if (!settings.contains("fShowMasternodesTab"))
         settings.setValue("fShowMasternodesTab", masternodeConfig.getCount());
@@ -147,8 +147,8 @@ void OptionsModel::Init()
 
     if (settings.contains("nObfuscationRounds"))
         SoftSetArg("-obfuscationrounds", settings.value("nObfuscationRounds").toString().toStdString());
-    if (settings.contains("nAnonymizeViridiAmount"))
-        SoftSetArg("-anonymizeviridiamount", settings.value("nAnonymizeViridiAmount").toString().toStdString());
+    if (settings.contains("nAnonymizeXDnaAmount"))
+        SoftSetArg("-anonymizeviridiamount", settings.value("nAnonymizeXDnaAmount").toString().toStdString());
 
     language = settings.value("language").toString();
 }
@@ -229,7 +229,7 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
         case ObfuscationRounds:
             return QVariant(nObfuscationRounds);
         case AnonymizeXDnaAmount:
-            return QVariant(nAnonymizeViridiAmount);
+            return QVariant(nAnonymizeXDnaAmount);
         case Listen:
             return settings.value("fListen");
         default:
@@ -339,9 +339,9 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             emit obfuscationRoundsChanged(nObfuscationRounds);
             break;
         case AnonymizeXDnaAmount:
-            nAnonymizeViridiAmount = value.toInt();
-            settings.setValue("nAnonymizeViridiAmount", nAnonymizeViridiAmount);
-            emit anonymizeXDnaAmountChanged(nAnonymizeViridiAmount);
+            nAnonymizeXDnaAmount = value.toInt();
+            settings.setValue("nAnonymizeXDnaAmount", nAnonymizeXDnaAmount);
+            emit anonymizeXDnaAmountChanged(nAnonymizeXDnaAmount);
             break;
         case CoinControlFeatures:
             fCoinControlFeatures = value.toBool();

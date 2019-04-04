@@ -78,7 +78,7 @@ public:
         painter->setPen(foreground);
         QRect boundingRect;
         painter->drawText(addressRect, Qt::AlignLeft | Qt::AlignVCenter, address, &boundingRect);
-     
+
         if (amount < 0) {
             foreground = COLOR_NEGATIVE;
         } else if (!confirmed) {
@@ -160,7 +160,7 @@ OverviewPage::OverviewPage(QWidget* parent) : QWidget(parent),
     //information block update
     timerinfo_mn = new QTimer(this);
     connect(timerinfo_mn, SIGNAL(timeout()), this, SLOT(updateMasternodeInfo()));
-    timerinfo_mn->start(1000); 
+    timerinfo_mn->start(1000);
 
     timerinfo_blockchain = new QTimer(this);
     connect(timerinfo_blockchain, SIGNAL(timeout()), this, SLOT(updatBlockChainInfo()));
@@ -279,7 +279,7 @@ void OverviewPage::setWalletModel(WalletModel* model)
         connect(ui->toggleObfuscation, SIGNAL(clicked()), this, SLOT(toggleObfuscation()));
         connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
         connect(ui->blabel_VIRIDI, SIGNAL(clicked()), this, SLOT(openMyAddresses()));
-       
+
     }
 
     // update the display unit, to not use the default ("VIRIDI")
@@ -312,8 +312,8 @@ void OverviewPage::updateMasternodeInfo()
 {
   if (masternodeSync.IsBlockchainSynced() && masternodeSync.IsSynced())
   {
-  
-   int mn1=0;   
+
+   int mn1=0;
    int mn2=0;
    int mn3=0;
    int totalmn=0;
@@ -329,11 +329,11 @@ void OverviewPage::updateMasternodeInfo()
            case 3:
            mn3++;break;
        }
- 
+
     }
     totalmn=mn1+mn2+mn3;
     ui->labelMnTotal_Value->setText(QString::number(totalmn));
-    
+
     ui->graphMN1->setMaximum(totalmn);
     ui->graphMN2->setMaximum(totalmn);
     ui->graphMN3->setMaximum(totalmn);
@@ -342,62 +342,57 @@ void OverviewPage::updateMasternodeInfo()
     ui->graphMN3->setValue(mn3);
 
     if(timerinfo_mn->interval() == 1000)
-           timerinfo_mn->setInterval(180000); 
-  }  
+           timerinfo_mn->setInterval(180000);
+  }
 }
 
 void OverviewPage::updatBlockChainInfo()
 {
- if (masternodeSync.IsBlockchainSynced())
- {
-int CurrentBlock = (int)chainActive.Height();
-int64_t netHashRate = chainActive.GetNetworkHashPS(24, CurrentBlock-1);
-int64_t BlockReward = Params().SubsidyValue(netHashRate);
-double BlockRewardVIRIDI =  static_cast<double>(BlockReward/COIN); 
-//int64_t VIRIDISupply = chainActive.Tip()->nMoneySupply / COIN; 
+    if(!masternodeSync.IsBlockchainSynced())
+        return;
 
-ui->label_CurrentBlock_value->setText(QString::number(CurrentBlock));
+    uint32_t tip_time = chainActive.Tip()->GetBlockTime();
 
+    int CurrentBlock = chainActive.Height();
+    int64_t netHashRate = chainActive.GetNetworkHashPS(24, CurrentBlock);
+    int64_t BlockReward = Params().SubsidyValue(netHashRate, tip_time, CurrentBlock);
+    double BlockRewardVIRIDI =  static_cast<double>(BlockReward)/static_cast<double>(COIN);
+    //int64_t VIRIDISupply = chainActive.Tip()->nMoneySupply / COIN;
 
-int BitGunLevel = 0;
-    for (auto it =  Params().GetSubsidySwitchPoints().begin(); it != Params().GetSubsidySwitchPoints().end(); ++it)
+    ui->label_CurrentBlock_value->setText(QString::number(CurrentBlock));
+
+    int BitGunLevel = 0;
+
+    for(const auto& it : Params().GetSubsidySwitchPoints(tip_time, CurrentBlock))
     {
         BitGunLevel++;
-        if (it->second == BlockReward)
-        {
+
+        if(it.second == BlockReward)
             break;
-        }
     }
-ui->label_CurrentBitGun_value->setText(QString::number(BitGunLevel));
 
+    ui->label_CurrentBitGun_value->setText(QString::number(BitGunLevel));
 
-double  nethash_mhs = static_cast<double>(netHashRate/1000000) ;
+    double nethash_mhs = static_cast<double>(netHashRate/1000000) ;
 
+    if(nethash_mhs >= 1000000)
+    {
+        ui->label_Nethash->setText(tr("Nethash THs:"));
+        ui->label_Nethash_value->setText(QString::number(nethash_mhs/1000000,'f',2));
+    }
+    else if(nethash_mhs >= 1000)
+    {
+        ui->label_Nethash->setText(tr("Nethash GHs:"));
+        ui->label_Nethash_value->setText(QString::number(nethash_mhs/1000,'f',2));
+    }
+    else
+    {
+        ui->label_Nethash->setText(tr("Nethash MHs:"));
+        ui->label_Nethash_value->setText(QString::number(nethash_mhs));
+    }
 
-if (nethash_mhs >= 1000000)
-{
-    ui->label_Nethash->setText(tr("Nethash THs:"));
-    ui->label_Nethash_value->setText(QString::number(nethash_mhs/1000000,'f',2));
-}
-
-else if  (nethash_mhs >= 1000)
-{
-    ui->label_Nethash->setText(tr("Nethash GHs:"));
-    ui->label_Nethash_value->setText(QString::number(nethash_mhs/1000,'f',2));
-}
-
-else
-{
-    ui->label_Nethash->setText(tr("Nethash MHs:"));
-    ui->label_Nethash_value->setText(QString::number(nethash_mhs));
-}
-
-
-ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardVIRIDI));
-//ui->label_VIRIDISupply_value->setText(QString::number(VIRIDISupply));
-
-
-  }
+    ui->label_CurrentBlockReward_value->setText(QString::number(BlockRewardVIRIDI));
+    //ui->label_VIRIDISupply_value->setText(QString::number(VIRIDISupply));
 }
 
 void OverviewPage::openMyAddresses()
@@ -422,7 +417,7 @@ void OverviewPage::updateObfuscationProgress()
     if (!pwalletMain) return;
 
     QString strAmountAndRounds;
-    QString strAnonymizeXDnaAmount = BitcoinUnits::formatHtmlWithUnit(nDisplayUnit, nAnonymizeViridiAmount * COIN, false, BitcoinUnits::separatorAlways);
+    QString strAnonymizeXDnaAmount = BitcoinUnits::formatHtmlWithUnit(nDisplayUnit, nAnonymizeXDnaAmount * COIN, false, BitcoinUnits::separatorAlways);
 
     if (currentBalance == 0) {
         ui->obfuscationProgress->setValue(0);
@@ -457,11 +452,11 @@ void OverviewPage::updateObfuscationProgress()
     CAmount nMaxToAnonymize = nAnonymizableBalance + currentAnonymizedBalance + nDenominatedUnconfirmedBalance;
 
     // If it's more than the anon threshold, limit to that.
-    if (nMaxToAnonymize > nAnonymizeViridiAmount * COIN) nMaxToAnonymize = nAnonymizeViridiAmount * COIN;
+    if (nMaxToAnonymize > nAnonymizeXDnaAmount * COIN) nMaxToAnonymize = nAnonymizeXDnaAmount * COIN;
 
     if (nMaxToAnonymize == 0) return;
 
-    if (nMaxToAnonymize >= nAnonymizeViridiAmount * COIN) {
+    if (nMaxToAnonymize >= nAnonymizeXDnaAmount * COIN) {
         ui->labelAmountRounds->setToolTip(tr("Found enough compatible inputs to anonymize %1")
                                               .arg(strAnonymizeXDnaAmount));
         strAnonymizeXDnaAmount = strAnonymizeXDnaAmount.remove(strAnonymizeXDnaAmount.indexOf("."), BitcoinUnits::decimals(nDisplayUnit) + 1);
@@ -641,7 +636,7 @@ void OverviewPage::toggleObfuscation()
 
         /* show obfuscation configuration if client has defaults set */
 
-        if (nAnonymizeViridiAmount == 0) {
+        if (nAnonymizeXDnaAmount == 0) {
             ObfuscationConfig dlg(this);
             dlg.setModel(walletModel);
             dlg.exec();

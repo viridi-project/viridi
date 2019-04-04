@@ -21,8 +21,8 @@ QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
     unitlist.append(VIC);
-   // unitlist.append(mVIC);
-   // unitlist.append(uVIC);
+   // unitlist.append(mVIRIDI);
+   // unitlist.append(uVIRIDI);
     return unitlist;
 }
 

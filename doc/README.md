@@ -42,7 +42,7 @@ The following are developer notes on how to build VIRIDI on your native platform
 
 Development
 ---------------------
-The VIRIDI repo's [root README](https://github.com/viridi-project/VIRIDI/blob/master/README.md) contains relevant information on the development process and automated testing.
+The VIRIDI repo's [root README](https://github.com/VIRIDI-Core/VIRIDI/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
