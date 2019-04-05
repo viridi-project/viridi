@@ -265,7 +265,7 @@ public:
         strObfuscationPoolDummyAddress = "VTQF6gfnV77jnxXxkauDxPqkW3nmMEkiZ1";
         nStartMasternodePayments = 1403728576; //Wed, 25 Jun 2014 20:36:16 GMT
 
-        nHEXHashTimestamp = 1554401288;  // Thursday, 4 April 2019 18:08:08 GMT+00:00
+        nHEXHashTimestamp = 1554465600;  // Friday, 5 April 2019 12:00:00 GMT+00:00
         nF2Timestamp      = 1870020488; // Wednesday, 4 April 2029 18:08:08 GMT+00:00
     }
 
